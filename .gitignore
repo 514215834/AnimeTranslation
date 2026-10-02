@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# 前端
+node_modules/
+dist/
+.vite/
+
+# 运行数据与本地模型（目录约定见技术架构文档 7.1）
+data/
+models/
+*.db
+
+# 环境变量与密钥
+.env
+.env.*
+*.key
+
+# IDE / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
