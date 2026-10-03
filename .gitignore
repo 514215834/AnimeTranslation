@@ -26,3 +26,6 @@ models/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# 界面保存的运行配置（本机路径）
+runtime_config.json

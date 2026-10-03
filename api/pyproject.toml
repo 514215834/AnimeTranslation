@@ -1,0 +1,34 @@
+[project]
+name = "anime-translation"
+version = "0.1.0"
+description = "AI 动漫番剧翻译平台 · 后端 API（M1 MVP）"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "sqlalchemy>=2.0",
+    "aiosqlite>=0.20",
+    "httpx>=0.27",
+    "python-multipart>=0.0.9",
+    "loguru>=0.7",
+    "pysubs2>=1.7",
+    "cryptography>=42",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+asr = ["faster-whisper>=1.0"]
+dev = [
+    "pytest>=8.2",
+    "pytest-asyncio>=0.23",
+    "anyio>=4.4",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.setuptools.packages.find]
+include = ["app*"]

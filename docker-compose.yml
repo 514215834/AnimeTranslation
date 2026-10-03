@@ -1,0 +1,31 @@
+# AnimeTranslation MVP 一键部署（架构文档 7.1）
+# 用法：docker compose up -d --build
+services:
+  api:
+    build: ./api
+    container_name: anime-api
+    restart: unless-stopped
+    environment:
+      # 如需显式指定 FFmpeg（镜像内已装，一般无需设置）
+      # FFMPEG_PATH: /usr/bin/ffmpeg
+      HF_HOME: /app/data/models/hf
+    volumes:
+      - ./data:/app/data   # app.db / media / artifacts / exports / models
+    expose:
+      - "8000"
+
+  web:
+    build: ./web
+    container_name: anime-web
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+# 数据卷布局（技术架构文档 7.1）：
+# ./data/app.db        SQLite 元数据
+# ./data/media/        上传视频 + 抽取音频
+# ./data/artifacts/    各 Stage 产物（断点续跑）
+# ./data/exports/      导出成品 SRT
+# ./data/models/       faster-whisper 模型缓存
